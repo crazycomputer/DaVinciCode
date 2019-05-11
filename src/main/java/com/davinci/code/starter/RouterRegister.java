@@ -1,8 +1,8 @@
-package com.DaVinciCode.starter;
+package com.davinci.code.starter;
 
 
-import com.DaVinciCode.Controller.LoginController;
-import com.DaVinciCode.Controller.RegisterController;
+import com.davinci.code.controller.LoginController;
+import com.davinci.code.controller.RegisterController;
 import io.netty.handler.codec.http.HttpResponseStatus;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.Router;

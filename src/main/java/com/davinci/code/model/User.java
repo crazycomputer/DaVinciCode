@@ -1,4 +1,4 @@
-package com.DaVinciCode.Model;
+package com.davinci.code.model;
 
 
 import lombok.Value;

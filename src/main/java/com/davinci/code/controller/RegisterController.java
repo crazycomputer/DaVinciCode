@@ -1,4 +1,4 @@
-package com.DaVinciCode.Controller;
+package com.davinci.code.controller;
 
 public class RegisterController {
   public String register(String json){

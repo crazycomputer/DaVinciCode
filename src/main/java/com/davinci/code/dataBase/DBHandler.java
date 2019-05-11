@@ -1,6 +1,6 @@
-package com.DaVinciCode.DataBase;
+package com.davinci.code.dataBase;
 
-import com.DaVinciCode.Model.User;
+import com.davinci.code.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;

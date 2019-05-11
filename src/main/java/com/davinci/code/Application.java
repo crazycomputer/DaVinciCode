@@ -1,5 +1,5 @@
-package com.DaVinciCode;
-import com.DaVinciCode.starter.MainVerticle;
+package com.davinci.code;
+import com.davinci.code.starter.MainVerticle;
 import io.vertx.core.Vertx;
 
 public class Application {
