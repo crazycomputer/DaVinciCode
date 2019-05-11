@@ -36,7 +36,7 @@ public class RouterRegister {
     String bodyString = routingContext.getBodyAsString();
     routingContext.vertx().executeBlocking(futrue -> {
       String result=registerController.register(bodyString);
-      routingContext.response().setStatusCode(HttpResponseStatus.OK.code()).end("register");
+      routingContext.response().setStatusCode(HttpResponseStatus.OK.code()).end(result);
       futrue.complete();
     }, asyncResult ->
     {
@@ -55,7 +55,7 @@ public class RouterRegister {
     String bodyString = routingContext.getBodyAsString();
     routingContext.vertx().executeBlocking(futrue -> {
       String result=loginController.login(bodyString);
-      routingContext.response().setStatusCode(HttpResponseStatus.OK.code()).end("login");
+      routingContext.response().setStatusCode(HttpResponseStatus.OK.code()).end(result);
     }, asyncResult ->
     {
       if (asyncResult.failed()) {
@@ -73,7 +73,7 @@ public class RouterRegister {
     String bodyString = routingContext.getBodyAsString();
     routingContext.vertx().executeBlocking(futrue -> {
       String result=loginController.logOut(bodyString);
-      routingContext.response().setStatusCode(HttpResponseStatus.OK.code()).end("logout");
+      routingContext.response().setStatusCode(HttpResponseStatus.OK.code()).end(result);
     }, asyncResult ->
     {
       if (asyncResult.failed()) {
