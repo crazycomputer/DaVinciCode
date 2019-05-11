@@ -1,22 +1,28 @@
 package com.DaVinciCode.starter;
 
+
 import io.vertx.core.AbstractVerticle;
 import io.vertx.core.Future;
+import io.vertx.core.http.HttpServer;
+import io.vertx.ext.web.Router;
+
+
 
 public class MainVerticle extends AbstractVerticle {
-
   @Override
   public void start(Future<Void> startFuture) throws Exception {
-    vertx.createHttpServer().requestHandler(req -> {
-      req.response()
-        .putHeader("content-type", "text/plain")
-        .end("Hello from Vert.x!");
-    }).listen(8888, http -> {
-      if (http.succeeded()) {
-        startFuture.complete();
-        System.out.println("HTTP server started on port 8888");
+    HttpServer server = vertx.createHttpServer();
+    RouterRegister routerRegister = new RouterRegister();
+    Router router = Router.router(vertx);
+     // Register API
+    routerRegister.init(router);
+    // Start the HTTPS server
+    server.requestHandler(router).listen(8080, asyncResult ->
+    {
+      if (asyncResult.failed()) {
+        System.out.println("start server failed! " + asyncResult.cause());
       } else {
-        startFuture.fail(http.cause());
+        System.out.println("start server success!");
       }
     });
   }

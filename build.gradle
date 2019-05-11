@@ -6,6 +6,7 @@ plugins {
 
 group = 'com.DaVinciCode'
 version = '1.0.0-SNAPSHOT'
+sourceCompatibility = '1.8'
 
 repositories {
   mavenCentral()
@@ -14,44 +15,28 @@ repositories {
 ext {
   vertxVersion = '3.7.0'
   junitJupiterEngineVersion = '5.4.0'
+  commonsVersion = '3.9'
+  lombokVersion = '1.18.8'
 }
 
 application {
-  mainClassName = 'io.vertx.core.Launcher'
+  mainClassName = 'com.DaVinciCode.Application'
 }
 
-sourceCompatibility = '1.8'
-
-def mainVerticleName = 'com.DaVinciCode.starter.MainVerticle'
-def watchForChange = 'src/**/*'
-def doOnChange = './gradlew classes'
 
 dependencies {
+  annotationProcessor "org.projectlombok:lombok:$lombokVersion"
+  compileOnly "org.projectlombok:lombok:$lombokVersion"
   implementation "io.vertx:vertx-core:$vertxVersion"
-
+  implementation "io.vertx:vertx-web:$vertxVersion"
+  implementation "org.apache.commons:commons-lang3:$commonsVersion"
   testImplementation "io.vertx:vertx-junit5:$vertxVersion"
   testRuntimeOnly "org.junit.jupiter:junit-jupiter-engine:$junitJupiterEngineVersion"
   testImplementation "org.junit.jupiter:junit-jupiter-api:$junitJupiterEngineVersion"
 }
 
-
-shadowJar {
-  classifier = 'fat'
-  manifest {
-    attributes 'Main-Verticle': mainVerticleName
-  }
-  mergeServiceFiles {
-    include 'META-INF/services/io.vertx.core.spi.VerticleFactory'
-  }
+jar {
+  manifest.attributes 'Main-Class': 'com.DaVinciCode.Application'
 }
 
-test {
-  useJUnitPlatform()
-  testLogging {
-    events 'PASSED', 'FAILED', 'SKIPPED'
-  }
-}
 
-run {
-  args = ['run', mainVerticleName, "--redeploy=$watchForChange", "--launcher-class=$mainClassName", "--on-redeploy=$doOnChange"]
-}
