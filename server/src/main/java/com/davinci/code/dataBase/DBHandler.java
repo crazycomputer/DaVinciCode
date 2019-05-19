@@ -1,6 +1,6 @@
 package com.davinci.code.dataBase;
 
-import com.davinci.code.model.User;
+import com.davinci.code.user.model.User;
 
 import java.util.ArrayList;
 import java.util.HashMap;

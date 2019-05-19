@@ -1,4 +1,4 @@
-package com.davinci.code.model;
+package com.davinci.code.user.model;
 
 
 import lombok.Value;

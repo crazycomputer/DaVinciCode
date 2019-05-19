@@ -2,8 +2,13 @@ plugins {
     id 'java'
 }
 
-group 'com.DaVinciCode'
-version '1.0.0-SNAPSHOT'
+application {
+  mainClassName = 'com.davinci.client.Client'
+}
+
+jar {
+  manifest.attributes 'Main-Class': 'com.davinci.client.Client'
+}
 
 sourceCompatibility = 1.8
 

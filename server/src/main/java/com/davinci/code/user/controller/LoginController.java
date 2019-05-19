@@ -1,4 +1,4 @@
-package com.davinci.code.controller;
+package com.davinci.code.user.controller;
 
 
 public class LoginController {
