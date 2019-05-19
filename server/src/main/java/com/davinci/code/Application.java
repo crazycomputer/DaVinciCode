@@ -8,5 +8,4 @@ public class Application {
     Vertx vertx = Vertx.vertx();
     vertx.deployVerticle(mainVerticle);
   }
-
 }

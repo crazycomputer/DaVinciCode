@@ -19,7 +19,6 @@ public class MainVerticle extends AbstractVerticle {
 
   private LoginController loginController = new LoginController();
   private RegisterController registerController = new RegisterController();
-  private WsManager wsManager = new WsManager();
 //  private ConcurrentHashMap<String,ServerWebSocket> wsMap=new ConcurrentHashMap<>();
 
   @Override
@@ -45,13 +44,14 @@ public class MainVerticle extends AbstractVerticle {
     router.post("/v1/user/register").handler(this::register);
     router.post("/v1/user/login").handler(this::login);
     router.post("/v1/user/logout").handler(this::logout);
-    router.get("/v1/davinci/game").handler(this::wsHandle);
+    router.get("/v1/davinci/game/:user").handler(this::wsHandle);
   }
 
 
   private void wsHandle(RoutingContext routingContext) {
     ServerWebSocket ws = routingContext.request().upgrade();
-    wsManager.add(ws);
+    String userID=routingContext.pathParam("user");
+    WsManager.getInstance().add(userID,ws);
   }
 
   /**
