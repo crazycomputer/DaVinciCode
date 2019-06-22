@@ -11,6 +11,7 @@ import io.vertx.core.http.HttpServer;
 import io.vertx.core.http.ServerWebSocket;
 import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
+import io.vertx.ext.web.handler.BodyHandler;
 
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -41,6 +42,10 @@ public class MainVerticle extends AbstractVerticle {
 
 
   private void init(Router router) {
+    // We need request bodies
+    router.route().handler(BodyHandler.create());
+    // We consume application/json, also produce it
+    router.route().consumes("application/json").produces("application/json");
     router.post("/v1/user/register").handler(this::register);
     router.post("/v1/user/login").handler(this::login);
     router.post("/v1/user/logout").handler(this::logout);
